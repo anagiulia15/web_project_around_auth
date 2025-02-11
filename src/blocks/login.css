@@ -3,3 +3,21 @@
   display: flex;
   flex-direction: column;
 }
+
+.login__form {
+  width: 880px;
+  color: #fff;
+}
+
+.login__input {
+  max-width: 100%;
+  color: #ccc;
+}
+
+.login__submit {
+  font-weight: 358px;
+  height: 50px;
+  top: 558px;
+  left: 461px;
+  border-radius: 2px;
+}
