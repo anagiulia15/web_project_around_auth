@@ -1,0 +1,10 @@
+.page {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  max-width: 1600;
+  min-width: 320px;
+  background-color: #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

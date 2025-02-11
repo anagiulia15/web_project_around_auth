@@ -1,0 +1,24 @@
+.header {
+  width: 882px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.header__logo {
+  width: 173px;
+  margin-top:3rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 880px) {
+  .header {
+    width: 282px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    margin-bottom: 32px;
+  }
+}

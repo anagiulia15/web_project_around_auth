@@ -1,0 +1,93 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup_show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup__overlay {
+  position: absolute;
+  background-color: black;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.popup__content {
+  z-index: 2;
+  position: relative;
+}
+
+.popup__close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  background-image: url(../images/closeinon.png);
+  background-repeat: no-repeat;
+  width: 41px;
+  height: 41px;
+  padding: 0;
+  right: -41px;
+  top: -41px;
+  position: absolute;
+}
+
+.popup__close:hover {
+  opacity: 0.7;
+}
+
+.popup__body {
+  width: 430px;
+  background-color: white;
+  padding: 34px 36px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.popup__body_transparent{
+  background-color: transparent;
+}
+
+.popup__title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.popup__image {
+
+}
+
+.popup__subtitle{
+  color: white;
+}
+
+@media screen and (max-width: 880px) {
+  .popup__body {
+    width: 282px;
+    box-sizing: border-box;
+  }
+
+  .popup__close {
+    right: -5px;
+  }
+
+  .popup__title {
+    font-size: 18px;
+  }
+}
