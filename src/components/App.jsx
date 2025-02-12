@@ -81,6 +81,11 @@ function App() {
           setCards(cards);
         });
       });
+    } else {
+      const token = localStorage.getItem("token");
+      if (token) {
+        setisLoggedIn(true);
+      }
     }
   }, [isLoggedIn]);
 
@@ -135,7 +140,7 @@ function App() {
   const handleLogin = ({ email, password }) => {
     auth.signin(email, password).then((result) => {
       if (!result.error) {
-        localStorage.setItem("token", result.error);
+        localStorage.setItem("token", result.token);
         setisLoggedIn(true);
       }
     });

@@ -10,7 +10,7 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
-    });
+    }).then((response) => response.json());
   }
 
   signin(email, password) {
@@ -20,7 +20,7 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
-    });
+    }).then((response) => response.json());
   }
 
   getUserinfo() {
