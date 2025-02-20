@@ -27,7 +27,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [isTooltipOpen, setisTooltipOpen] = useState(false);
-  const [hasTooltiperror] = useState(false);
+  const [tooltipMessage, setistooltipMessage] = useState("");
+  const [isTooltipSucces, setisTooltipSuccess] = useState(false);
+
   const [cards, setCards] = useState([]);
 
   function handleDelete(card) {
@@ -142,9 +144,16 @@ function App() {
       if (!result.error) {
         localStorage.setItem("token", result.token);
         setisLoggedIn(true);
+      } else {
+        setisTooltipOpen(true);
+        setisTooltipSuccess(false);
+        setistooltipMessage(
+          "Uy, algo salió mal. Por favor, inténtalo de nuevo."
+        );
       }
     });
   };
+  console.log(isTooltipOpen);
 
   return (
     <currentuserContext.Provider value={currentUser}>
@@ -156,7 +165,6 @@ function App() {
           isLoggedIn={isLoggedIn}
         />
         <Routes>
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
           <Route
             path="/signup"
             element={<Register handleRegistration={handleRegistration} />}
@@ -208,8 +216,12 @@ function App() {
           isOpen={isPopupDeleteOpen}
           handleClose={handleClosePopups}
         />
-        <Popup />
-        {isTooltipOpen && <InfoTooltip hasTooltiperror={hasTooltiperror} />}
+        <InfoTooltip
+          isOpen={isTooltipOpen}
+          tooltipMessage={tooltipMessage}
+          isTooltipSucces={isTooltipSucces}
+          onClose={() => setisTooltipOpen(false)}
+        />
       </div>
     </currentuserContext.Provider>
   );

@@ -59,7 +59,7 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-.popup__body_transparent{
+.popup__body_transparent {
   background-color: transparent;
 }
 
@@ -70,10 +70,9 @@
 }
 
 .popup__image {
-
 }
 
-.popup__subtitle{
+.popup__subtitle {
   color: white;
 }
 
@@ -90,4 +89,12 @@
   .popup__title {
     font-size: 18px;
   }
+}
+.popup__paragraph {
+  color: black;
+  font-family: inter;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  text-align: center;
 }
