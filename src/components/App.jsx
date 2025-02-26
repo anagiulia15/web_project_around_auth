@@ -11,7 +11,7 @@ import EditAvatar from "./EditAvatar";
 import NewCard from "./NewCard";
 import PopupDelete from "./PopupDelete";
 import Popup from "./Popup";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import InfoTooltip from "./InfoTooltip";
@@ -31,6 +31,7 @@ function App() {
   const [isTooltipSucces, setisTooltipSuccess] = useState(false);
 
   const [cards, setCards] = useState([]);
+  const navigate = useNavigate();
 
   function handleDelete(card) {
     setisPopupDeleteOpen(true);
@@ -77,19 +78,28 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      api.getUserinfo().then((user) => {
-        setCurrentUser(user);
-        api.getCards().then((cards) => {
-          setCards(cards);
+      api
+        .getUserinfo()
+        .then((user) => {
+          setCurrentUser(user);
+          api.getCards().then((cards) => {
+            setCards(cards);
+            navigate("/");
+          });
+        })
+        .catch(() => {
+          setisLoggedIn(false);
+          localStorage.clear();
         });
-      });
-    } else {
-      const token = localStorage.getItem("token");
-      if (token) {
-        setisLoggedIn(true);
-      }
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setisLoggedIn(true);
+    }
+  }, []);
 
   function handleAddPlaceSubmit(name, link) {
     api.storeCard(name, link).then((card) => {
@@ -132,10 +142,13 @@ function App() {
   const handleRegistration = ({ email, password }) => {
     auth.signup(email, password).then((result) => {
       if (result.error) {
-        setisTooltipOpen(true);
+        setistooltipMessage(result.error);
+        setisTooltipSuccess(false);
       } else {
-        setisTooltipOpen(false);
+        setistooltipMessage("Usuario registrado con éxito");
+        setisTooltipSuccess(true);
       }
+      setisTooltipOpen(true);
     });
   };
 
@@ -153,7 +166,12 @@ function App() {
       }
     });
   };
-  console.log(isTooltipOpen);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setCurrentUser({});
+    setisLoggedIn(false);
+  };
 
   return (
     <currentuserContext.Provider value={currentUser}>
@@ -162,6 +180,7 @@ function App() {
           handleEditAvatarClick={handleEditAvatarClick}
           handleEditProfileClick={handleEditProfileClick}
           handleAddPlaceClick={handleAddPlaceClick}
+          handleLogout={handleLogout}
           isLoggedIn={isLoggedIn}
         />
         <Routes>
@@ -220,7 +239,7 @@ function App() {
           isOpen={isTooltipOpen}
           tooltipMessage={tooltipMessage}
           isTooltipSucces={isTooltipSucces}
-          onClose={() => setisTooltipOpen(false)}
+          handleClose={() => setisTooltipOpen(false)}
         />
       </div>
     </currentuserContext.Provider>

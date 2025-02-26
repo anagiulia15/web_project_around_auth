@@ -35,7 +35,7 @@ export default function Register({ handleRegistration }) {
           value="Registrarse"
         />
       </form>
-      <Link to="/signin">¿Ya eres miembro? Inicia sesión aquí</Link>
+      <Link to="/login">¿Ya eres miembro? Inicia sesión aquí</Link>
     </div>
   );
 }

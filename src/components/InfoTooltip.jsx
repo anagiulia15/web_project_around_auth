@@ -7,7 +7,6 @@ export default function InfoTooltip({
   tooltipMessage,
   isTooltipSucces = true,
 }) {
-  console.log(isOpen);
   return (
     <div className={`popup popup_tooltip ${isOpen ? "popup_show" : ""}`}>
       <div className="popup__overlay" onClick={handleClose}></div>

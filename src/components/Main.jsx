@@ -1,5 +1,4 @@
 import Card from "./Cards";
-import Popup from "./Popup";
 
 export default function Main(props) {
   return (
@@ -17,7 +16,6 @@ export default function Main(props) {
           );
         })}
       </main>
-      <Popup />
     </div>
   );
 }
